@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordina Nomi per Lunghezza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input[type="text"], button {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f4f4f4;
+            margin: 5px 0;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ordina Nomi per Lunghezza</h1>
+        <input type="text" id="nameInput" placeholder="Inserisci un nome">
+        <button onclick="addName()">Aggiungi Nome</button>
+        <button onclick="sortNames()">Ordina</button>
+        <ul id="nameList"></ul>
+    </div>
+    <script>
+        const names = [];
+
+        function addName() {
+            const nameInput = document.getElementById('nameInput');
+            const name = nameInput.value.trim();
+            if (name) {
+                names.push(name);
+                nameInput.value = '';
+                displayNames();
+            }
+        }
+
+        function sortNames() {
+            names.sort((a, b) => a.length - b.length);
+            displayNames();
+        }
+
+        function displayNames() {
+            const nameList = document.getElementById('nameList');
+            nameList.innerHTML = '';
+            names.forEach(name => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                nameList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
+
